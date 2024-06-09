@@ -188,7 +188,7 @@ if example_jokers then
                 if card.ability.extra.flipped then
                     return {
                         message = localize{type = 'variable', key = 'a_Xmult', vars = { card.ability.extra.Xmult }},
-                        mult_mod = card.ability.extra.Xmult,
+                        Xmult_mod = card.ability.extra.Xmult,
                         colour = G.C.MULT
                     }
                 end
