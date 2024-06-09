@@ -182,14 +182,13 @@ if example_jokers then
         spritesheet = "pancakes",
         pos = {x = 1, y = 0},
         front_description = {text = 'Does absolutely nothing.', vars = {}},
-        back_description = {text = '{X:mult,C:white}X#1#{} Mult', vars = {'Xmult'}},
+        back_description = {text = '{X:mult,C:white} X#1# {} Mult', vars = {'Xmult'}},
         calculate = function(self, card, context)
             if context.cardarea == G.jokers and not context.repetition and not context.individual and not context.before and not context.after then
                 if card.ability.extra.flipped then
                     return {
-                        message = localize{type = 'variable', key = 'a_Xmult', vars = { card.ability.extra.Xmult }},
-                        Xmult_mod = card.ability.extra.Xmult,
-                        colour = G.C.MULT
+                        message = localize { type = 'variable', key = 'a_xmult', vars = {card.ability.extra.Xmult}},
+                        Xmult_mod = card.ability.extra.Xmult
                     }
                 end
             end

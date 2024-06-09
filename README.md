@@ -75,61 +75,58 @@ FlippingJokers.new({
 ```lua
 -- First joker
 FlippingJokers.new({
-  name = "Pancakes 1",
-  key = "pancakes_1",
-  config = { extra = { mult = 20, chips = 150 } },
-  loc_txt = {name = "Pancakes", text = {}},
-  rarity = 2,
-  cost = 5,
-  atlas = "pancakes",
-  spritesheet = "pancakes",
-  front_description = {text = '{C:chips}+#1#{} Chips', vars = {'chips'}},
-  back_description = {text = '{C:mult}+#1#{} Mult', vars = {'mult'}},
-  tooltips = {
-      { key = 'pancakes_tooltip2', name = 'Delicious', text = {'I heard that', 'both sides are', rainbow_text('wonderful')} }
-  },
-  calculate = function(self, card, context)
-      if context.cardarea == G.jokers and not context.repetition and not context.individual and not context.before and not context.after then
-          if card.ability.extra.flipped then
-              return {
-                  message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } },
-                  mult_mod = card.ability.extra.mult,
-                  colour = G.C.MULT
-              }
-          else
-              return {
-                  message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } },
-                  chip_mod = card.ability.extra.chips,
-                  colour = G.C.CHIPS
-              }
-          end
-      end
-  end
+    name = "Pancakes 1",
+    key = "pancakes_1",
+    config = { extra = { mult = 20, chips = 150 } },
+    loc_txt = {name = "Pancakes", text = {}},
+    rarity = 2,
+    cost = 5,
+    atlas = "pancakes",
+    spritesheet = "pancakes",
+    front_description = {text = '{C:chips}+#1#{} Chips', vars = {'chips'}},
+    back_description = {text = '{C:mult}+#1#{} Mult', vars = {'mult'}},
+    tooltips = { key = 'pancakes_tooltip2', name = 'Delicious', text = {'I heard that', 'both sides are', rainbow_text('wonderful')} },
+    calculate = function(self, card, context)
+        if context.cardarea == G.jokers and not context.repetition and not context.individual and not context.before and not context.after then
+            if card.ability.extra.flipped then
+                return {
+                    message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } },
+                    mult_mod = card.ability.extra.mult,
+                    colour = G.C.MULT
+                }
+            else
+                return {
+                    message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } },
+                    chip_mod = card.ability.extra.chips,
+                    colour = G.C.CHIPS
+                }
+            end
+        end
+    end
 })
 
 -- Second joker
 FlippingJokers.new({
-  name = "Pancakes 2",
-  key = "pancakes_2",
-  config = { extra = { Xmult = 4 } },
-  loc_txt = {name = "Pancakes", text = {}},
-  rarity = 2,
-  cost = 5,
-  atlas = "pancakes",
-  spritesheet = "pancakes",
-  pos = {x = 1, y = 0},
-  front_description = {text = 'Does absolutely nothing.', vars = {}},
-  back_description = {text = '{X:mult,C:white}X#1#{} Mult', vars = {'Xmult'}},
-  calculate = function(self, card, context)
-      if context.cardarea == G.jokers and not context.repetition and not context.individual and not context.before and not context.after then
-          if card.ability.extra.flipped then
-              return {
-                  message = localize{type = 'variable', key = 'a_Xmult', vars = { card.ability.extra.Xmult }},
-                  mult_mod = card.ability.extra.Xmult,
-                  colour = G.C.MULT
-              }
-          end
-      end
-  end
+    name = "Pancakes 2",
+    key = "pancakes_2",
+    config = { extra = { Xmult = 4 } },
+    loc_txt = {name = "Pancakes", text = {}},
+    rarity = 2,
+    cost = 5,
+    atlas = "pancakes",
+    spritesheet = "pancakes",
+    pos = {x = 1, y = 0},
+    front_description = {text = 'Does absolutely nothing.', vars = {}},
+    back_description = {text = '{X:mult,C:white} X#1# {} Mult', vars = {'Xmult'}},
+    calculate = function(self, card, context)
+        if context.cardarea == G.jokers and not context.repetition and not context.individual and not context.before and not context.after then
+            if card.ability.extra.flipped then
+                return {
+                    message = localize { type = 'variable', key = 'a_xmult', vars = {card.ability.extra.Xmult}},
+                    Xmult_mod = card.ability.extra.Xmult
+                }
+            end
+        end
+    end
 })
 ```
