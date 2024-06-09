@@ -12,6 +12,9 @@ Flipping jokers can have up to two unique abilities (one on each face).
 
 ## Getting started
 
+> [!TIP]
+> Don't hesitate to check `core.lua` if you have any trouble.
+
 You can create a flipping joker by simply calling the <sub>function</sub> `FlippingJokers.new(args)`, with the `args` being:
 - `args.name`: <sub>string</sub> name of the joker
 - `args.key`: <sub>string</sub> key of the joker
@@ -31,7 +34,7 @@ You can create a flipping joker by simply calling the <sub>function</sub> `Flipp
 - `args.calculate`: <sub>function</sub> set the calculate function of the joker
 - `args.tooltips`: <sub>table</sub> tooltips of the joker
 - `args.default_tooltip`: <sub>boolean</sub> set to true to add the default tooltip to the joker
-
+---
 ### Useful examples:
 **Creating a single joker** and providing 2 images *(one per face)*
 ```lua
@@ -67,6 +70,7 @@ FlippingJokers.new({
   end
 })
 ```
+---
 **Creating multiple jokers** and providing 2 spritesheets *(one for all the faces, the other for all the backs)*
 ```lua
 -- First joker
