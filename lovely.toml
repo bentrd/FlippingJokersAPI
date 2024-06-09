@@ -1,0 +1,54 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+## Make sure blinds which normally flip or unflip your jokers, don't do so on flipping jokers
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = "if v.facing == 'back' then v:flip() end"
+position = 'before'
+payload = "if v.ability.is_flipping_card then goto continue end"
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = "if v.facing == 'back' then v:flip() end"
+position = 'after'
+payload = "::continue::"
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = "v:flip()"
+position = 'before'
+payload = "if v.ability.is_flipping_card then v.ability.extra.flipped = not v.ability.extra.flipped end"
+match_indent = true
+
+## Make sure the sell cost label remains visible and clickable when the joker is flipped and prevent joker from auto unflipping after each round
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "self.sell_cost_label = self.facing == 'back' and '?' or self.sell_cost"
+position = 'at'
+payload = "self.sell_cost_label = (self.facing == 'back' and not self.ability.is_flipping_card) and '?' or self.sell_cost"
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if self.facing == 'back' then"
+position = 'at'
+payload = "if self.facing == 'back' and not self.ability.is_flipping_card then"
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if self.facing == 'front' and (not self.states.drag.is or G.CONTROLLER.HID.touch) and not self.no_ui and not G.debug_tooltip_toggle then"
+position = 'at'
+payload = "if (self.facing == 'front' or self.ability.is_flipping_card) and (not self.states.drag.is or G.CONTROLLER.HID.touch) and (not self.no_ui or self.ability.is_flipping_card) and not G.debug_tooltip_toggle then"
+match_indent = true
