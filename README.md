@@ -13,7 +13,7 @@ Flipping jokers can have up to two unique abilities (one on each face).
 ## Getting started
 
 > [!TIP]
-> Don't hesitate to check `core.lua` if you have any trouble.
+> Don't hesitate to check [`core.lua`](https://github.com/bentrd/FlippingJokersAPI/blob/main/core.lua) if you have any trouble.
 
 You can create a flipping joker by simply calling the <sub>function</sub> `FlippingJokers.new(args)`, with the `args` being:
 - `args.name`: <sub>string</sub> name of the joker
